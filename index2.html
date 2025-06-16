@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cafe Late - Elegancia y sabor</title>
+
+  <!-- Bootstrap 5.1 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text-base: #6b7280;
+      --color-heading: #8b0000;
+      --color-nav-bg: #8b0000;
+      --color-nav-text: #f9f1e7;
+      --color-link: #8b0000;
+      --color-link-hover: #5a1a01;
+      --color-btn-bg: #5a1a01;
+      --color-btn-text: #f9f1e7;
+      --border-radius: 0.75rem;
+      --shadow-light: rgba(139, 69, 19, 0.15);
+      --shadow-hover: rgba(90, 26, 1, 0.3);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text-base);
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a {
+      color: var(--color-link);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+    a:hover,
+    a:focus {
+      color: var(--color-link-hover);
+      outline-offset: 2px;
+      outline-color: transparent;
+      text-decoration: underline;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      flex-grow: 1;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: var(--color-nav-bg);
+      color: var(--color-nav-text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 3px 8px var(--shadow-light);
+      z-index: 1000;
+    }
+    nav .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      user-select: none;
+      color: var(--color-nav-text);
+    }
+    nav .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+      border-radius: 8px;
+    }
+    nav .logo span {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-nav-text);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: var(--color-nav-text);
+      font-weight: 600;
+      font-size: 1rem;
+      padding-bottom: 2px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      border-bottom-color: var(--color-btn-bg);
+      outline: none;
+    }
+    nav form {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav form input[type="search"] {
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.25rem;
+      border: none;
+      font-size: 1rem;
+      width: 200px;
+      background-color: rgba(249, 241, 231, 0.4);
+      color: var(--color-nav-text);
+    }
+    nav form input[type="search"]::placeholder {
+      color: rgba(249, 241, 231, 0.7);
+    }
+    nav form input[type="search"]:focus {
+      outline: none;
+      background-color: #f9f1e7;
+      color: #8b0000;
+    }
+    nav form button {
+      background-color: #5a1a01;
+      color: #f9f1e7;
+      border: none;
+      border-radius: 0.25rem;
+      padding: 0.3rem 0.75rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    nav form button:hover,
+    nav form button:focus {
+      background-color: #8b0000;
+      outline: none;
+    }
+
+    header.hero {
+      text-align: center;
+      margin: 2rem auto 6rem;
+      max-width: 700px;
+      user-select: none;
+    }
+    header.hero img.logo-large {
+      width: 140px;
+      height: auto;
+      margin-bottom: 2rem;
+      filter: drop-shadow(1px 2px 2px var(--shadow-light));
+      transition: filter 0.3s ease;
+      border-radius: 8px;
+    }
+    header.hero img.logo-large:hover,
+    header.hero img.logo-large:focus {
+      filter: drop-shadow(0 0 10px var(--shadow-hover));
+      outline: none;
+    }
+    header.hero h1 {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--color-heading);
+      line-height: 1.1;
+      text-shadow: 1px 1px 3px var(--shadow-light);
+    }
+    header.hero p {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-text-base);
+      margin-bottom: 3rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    header.hero a.cta-button {
+      padding: 1rem 2.5rem;
+      background-color: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-radius: var(--border-radius);
+      box-shadow: 0 6px 15px var(--shadow-light);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+    header.hero a.cta-button:hover,
+    header.hero a.cta-button:focus {
+      background-color: var(--color-heading);
+      box-shadow: 0 8px 20px var(--shadow-hover);
+      outline: none;
+    }
+
+    h2.section-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--color-heading);
+      margin-bottom: 2.5rem;
+      border-bottom: 3px solid var(--color-btn-bg);
+      display: inline-block;
+      padding-bottom: 0.2rem;
+    }
+
+    #productos .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      justify-content: start;
+      max-width: 940px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #searchLocalInput {
+      flex-basis: 100%;
+      max-width: 400px;
+      font-size: 18px;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius);
+      border: 1px solid #d3a678;
+      box-shadow: 0 1px 4px var(--shadow-light);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      color: var(--color-heading);
+      background-color: #fff5f0;
+      order: -1;
+    }
+    #searchLocalInput::placeholder {
+      color: #bb9b8b;
+    }
+    #searchLocalInput:focus {
+      outline: none;
+      border-color: var(--color-btn-bg);
+      box-shadow: 0 0 5px 2px var(--shadow-hover);
+      background-color: #fef9f7;
+    }
+
+    #productList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 940px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-buy {
+      background-color: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px var(--shadow-light);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+      user-select: none;
+    }
+    .btn-buy:hover:not(:disabled),
+    .btn-buy:focus:not(:disabled) {
+      background-color: var(--color-heading);
+      box-shadow: 0 6px 20px var(--shadow-hover);
+      outline: none;
+    }
+    .btn-buy:disabled,
+    .btn-buy[disabled] {
+      background-color: #d6b8a2;
+      cursor: not-allowed;
+      color: #a67d60;
+      box-shadow: none;
+    }
+
+    .product-button {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+      background: #fff7f2;
+      border-radius: var(--border-radius);
+      border: 1px solid #e7dace;
+      box-shadow: 0 2px 10px var(--shadow-light);
+      padding: 1rem 1.25rem;
+      min-width: 230px;
+      user-select: none;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .product-button:hover,
+    .product-button:focus-within {
+      box-shadow: 0 10px 30px var(--shadow-hover);
+      transform: translateY(-4px);
+      outline: none;
+    }
+    .product-button img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    .product-button h3 {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--color-heading);
+      margin: 0;
+    }
+    .product-button p {
+      font-weight: 400;
+      font-size: 0.95rem;
+      color: #6b4b35;
+      margin: 0 0 0.25rem 0;
+    }
+    .product-availability {
+      font-weight: 600;
+      color: #6b4b35;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      user-select: text;
+    }
+
+    #productTotals {
+      font-weight: 600;
+      font-size: 18px;
+      color: #6b4b35;
+      user-select: text;
+      max-width: 940px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1rem;
+      margin-bottom: 5rem;
+      text-align: center;
+    }
+
+    #reservas form {
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      user-select: none;
+    }
+    #reservas label {
+      font-weight: 600;
+      color: var(--color-heading);
+      font-size: 16px;
+    }
+    #reservas input,
+    #reservas select,
+    #reservas textarea {
+      padding: 0.75rem 1rem;
+      font-size: 16px;
+      border-radius: var(--border-radius);
+      border: 1.5px solid #dbc5b4;
+      box-shadow: inset 0 1px 3px rgba(139,69,19,0.1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      color: var(--color-heading);
+      font-family: inherit;
+      resize: vertical;
+      background-color: #fff7f2;
+    }
+    #reservas input:focus,
+    #reservas select:focus,
+    #reservas textarea:focus {
+      outline: none;
+      border-color: var(--color-btn-bg);
+      box-shadow: 0 0 8px var(--shadow-hover);
+      background-color: #fff9f6;
+    }
+    #reservas button[type="submit"] {
+      background-color: var(--color-btn-bg);
+      color: var(--color-btn-text);
+      font-weight: 700;
+      font-size: 18px;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 1rem 0;
+      cursor: pointer;
+      box-shadow: 0 6px 20px var(--shadow-light);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    #reservas button[type="submit"]:hover,
+    #reservas button[type="submit"]:focus {
+      background-color: var(--color-heading);
+      box-shadow: 0 8px 24px var(--shadow-hover);
+      outline: none;
+    }
+    #reservationConfirmation {
+      margin-top: 1.5rem;
+      font-weight: 600;
+      color: #3a6b28;
+      font-size: 1.1rem;
+      min-height: 2em;
+      user-select: text;
+      text-align: center;
+    }
+    #contactos {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--color-text-base);
+      user-select: text;
+      text-align: center;
+    }
+    #contactos p {
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    #direccion {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 5rem;
+    }
+    #direccion #map {
+      width: 100%;
+      height: 360px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 20px var(--shadow-light);
+      transition: box-shadow 0.3s ease;
+      user-select: none;
+    }
+    #direccion #map:hover,
+    #direccion #map:focus {
+      box-shadow: 0 6px 25px var(--shadow-hover);
+      outline: none;
+    }
+    footer {
+      text-align: center;
+      margin-top: auto;
+      padding: 2rem 1rem;
+      color: #b48a6a;
+      font-size: 14px;
+      user-select: none;
+      border-top: 1px solid #dbc5b4;
+    }
+    @media (max-width: 768px) {
+      header.hero h1 {
+        font-size: 36px;
+      }
+      #productList {
+        justify-content: center;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="#inicio" class="logo" aria-label="Cafe Late Home">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo Cafe Late" />
+        <span>Cafe Late</span>
+      </a>
+      <ul role="menubar" aria-label="Primary navigation">
+        <li role="none"><a role="menuitem" href="#inicio" tabindex="0">Inicio</a></li>
+        <li role="none"><a role="menuitem" href="#productos" tabindex="0">Productos</a></li>
+        <li role="none"><a role="menuitem" href="#reservas" tabindex="0">Reservas</a></li>
+        <li role="none"><a role="menuitem" href="#contactos" tabindex="0">Contactos</a></li>
+        <li role="none"><a role="menuitem" href="#direccion" tabindex="0">Lugar Donde Estamos</a></li>
+      </ul>
+      <form class="d-flex" role="search" action="https://www.google.com/search" method="GET" target="_blank" rel="noopener noreferrer" style="margin-left: auto;">
+        <input class="form-control me-2" type="search" placeholder="Buscar en Google" aria-label="Buscar en Google" name="q" />
+        <button class="btn btn-light text-dark" type="submit" aria-label="Buscar en Google">Buscar</button>
+      </form>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio" tabindex="-1">
+    <img class="logo-large" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo Cafe Late" />
+    <h1>Bienvenido a Cafe Late</h1>
+    <p>Descubre el placer de un café artesanal preparado especialmente para ti.</p>
+    <a href="#productos" class="cta-button" role="button">Ver Productos</a>
+  </header>
+
+  <main class="container" tabindex="-1">
+
+    <section id="productos" aria-labelledby="productos-title">
+      <h2 id="productos-title" class="section-title">Nuestros Productos</h2>
+      <div class="buttons-container">
+        <input type="search" id="searchInput" placeholder="Buscar productos localmente..." aria-label="Buscar productos disponibles" autocomplete="off" />
+      </div>
+      <div id="productList" aria-live="polite" aria-atomic="true"></div>
+      <div id="productTotals" aria-label="Totales de productos"></div>
+    </section>
+
+    <section id="reservas" aria-labelledby="reservas-title" style="margin-top: 6rem;">
+      <h2 id="reservas-title" class="section-title">Haz tu reserva</h2>
+      <form id="reservationForm" novalidate>
+        <label for="resName">Nombre</label>
+        <input type="text" id="resName" name="resName" required aria-required="true" aria-describedby="resNameError" />
+        <div id="resNameError" class="error-message" style="color: #b00020; font-size: 0.9rem; display:none;">Por favor ingresa tu nombre.</div>
+
+        <label for="resEmail">Correo electrónico</label>
+        <input type="email" id="resEmail" name="resEmail" required aria-required="true" aria-describedby="resEmailError" autocomplete="email" />
+        <div id="resEmailError" class="error-message" style="color: #b00020; font-size: 0.9rem; display:none;">Por favor ingresa un correo válido.</div>
+
+        <label for="resDate">Fecha</label>
+        <input type="date" id="resDate" name="resDate" required aria-required="true" aria-describedby="resDateError" min="" />
+        <div id="resDateError" class="error-message" style="color: #b00020; font-size: 0.9rem; display:none;">Selecciona una fecha válida.</div>
+
+        <label for="resTime">Hora</label>
+        <input type="time" id="resTime" name="resTime" required aria-required="true" aria-describedby="resTimeError" />
+        <div id="resTimeError" class="error-message" style="color: #b00020; font-size: 0.9rem; display:none;">Selecciona una hora válida.</div>
+
+        <label for="resPersons">Personas</label>
+        <input type="number" id="resPersons" name="resPersons" min="1" max="20" value="1" required aria-required="true" aria-describedby="resPersonsError" />
+        <div id="resPersonsError" class="error-message" style="color: #b00020; font-size: 0.9rem; display:none;">Indica el número de personas.</div>
+
+        <button type="submit" aria-label="Enviar reserva">Reservar</button>
+        <div id="reservationConfirmation" role="alert" aria-live="assertive" style="margin-top:1.5rem; font-weight:bold; color:#22c55e;"></div>
+      </form>
+    </section>
+
+    <section id="contactos" aria-labelledby="contactos-title" style="margin-top: 6rem;">
+      <h2 id="contactos-title" class="section-title">Contactos</h2>
+      <p><strong>Dirección:</strong> Calle Central 123, Ciudad, País</p>
+      <p><strong>Teléfono:</strong> +34 123 456 789</p>
+      <p><strong>Email:</strong> contacto@cafelate.com</p>
+      <p><strong>Horario:</strong> Lunes a Viernes 8:00 - 18:00</p>
+    </section>
+
+    <section id="direccion" aria-labelledby="direccion-title" style="margin-top: 6rem;">
+      <h2 id="direccion-title" class="section-title">Lugar Donde Estamos</h2>
+      <div id="map" tabindex="0" role="region" aria-label="Mapa ubicación Cafe Late" style="width: 100%; height: 360px; border-radius: 0.75rem; box-shadow: 0 4px 20px rgba(139,69,19,0.15);"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2024 Cafe Late — Todos los derechos reservados</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=iniciarMapa" async defer></script>
+
+  <script>
+    const dateInput = document.getElementById('resDate');
+    dateInput.min = new Date().toISOString().split('T')[0];
+
+    const products = [
+      {
+        id: 1,
+        name: "Espresso",
+        available: 20,
+        bought: 0,
+        description: "Café intenso y breve.",
+        img: "https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 2,
+        name: "Latte",
+        available: 15,
+        bought: 0,
+        description: "Espresso con leche cremosa.",
+        img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 3,
+        name: "Cappuccino",
+        available: 10,
+        bought: 0,
+        description: "Espuma de leche y café equilibrados.",
+        img: "https://images.unsplash.com/photo-1525626004774-43e81ce180a3?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 4,
+        name: "Mocha",
+        available: 8,
+        bought: 0,
+        description: "Café con chocolate y leche.",
+        img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 5,
+        name: "Americano",
+        available: 12,
+        bought: 0,
+        description: "Espresso diluido con agua caliente.",
+        img: "https://images.unsplash.com/photo-1532634896-26909d0d41d3?auto=format&fit=crop&w=400&q=80"
+      }
+    ];
+
+    const productListEl = document.getElementById("productList");
+    const searchInput = document.getElementById("searchInput");
+    const productTotalsEl = document.getElementById("productTotals");
+
+    function renderProducts(filter = "") {
+      const filtered = products.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()));
+      productListEl.innerHTML = "";
+      if (filtered.length === 0) {
+        productListEl.innerHTML = '<p style="color:#9ca3af; font-style: italic;">No se encontraron productos.</p>';
+        productTotalsEl.textContent = "";
+        return;
+      }
+      filtered.forEach(product => {
+        const btn = document.createElement("div");
+        btn.className = "product-button";
+
+        const img = document.createElement("img");
+        img.src = product.img;
+        img.alt = product.name;
+        btn.appendChild(img);
+
+        const title = document.createElement("h3");
+        title.textContent = product.name;
+
+        const description = document.createElement("p");
+        description.textContent = product.description;
+
+        const avail = document.createElement("p");
+        avail.className = "product-availability";
+        avail.textContent = `Disponibles: ${product.available} | Comprados: ${product.bought}`;
+
+        const buyBtn = document.createElement("button");
+        buyBtn.className = "btn-buy";
+        buyBtn.textContent = "Comprar";
+        buyBtn.disabled = product.available === 0;
+        buyBtn.addEventListener("click", () => {
+          if (product.available > 0) {
+            product.available--;
+            product.bought++;
+            renderProducts(searchInput.value);
+            updateTotals();
+          }
+        });
+
+        btn.appendChild(title);
+        btn.appendChild(description);
+        btn.appendChild(avail);
+        btn.appendChild(buyBtn);
+        productListEl.appendChild(btn);
+      });
+      updateTotals();
+    }
+
+    function updateTotals() {
+      const totalAvailable = products.reduce((sum, p) => sum + p.available, 0);
+      const totalBought = products.reduce((sum, p) => sum + p.bought, 0);
+      productTotalsEl.textContent = `Productos disponibles: ${totalAvailable} | Productos comprados: ${totalBought}`;
+    }
+
+    searchInput.addEventListener("input", e => {
+      renderProducts(e.target.value);
+    });
+
+    const reservationForm = document.getElementById("reservationForm");
+    const resConfirmation = document.getElementById("reservationConfirmation");
+
+    reservationForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      ["resName", "resEmail", "resDate", "resTime", "resPersons"].forEach(id => {
+        document.getElementById(id + "Error").style.display = "none";
+      });
+
+      let valid = true;
+
+      const name = reservationForm.resName.value.trim();
+      if (!name) {
+        document.getElementById("resNameError").style.display = "block";
+        valid = false;
+      }
+      const email = reservationForm.resEmail.value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        document.getElementById("resEmailError").style.display = "block";
+        valid = false;
+      }
+      const date = reservationForm.resDate.value;
+      if (!date) {
+        document.getElementById("resDateError").style.display = "block";
+        valid = false;
+      }
+      const time = reservationForm.resTime.value;
+      if (!time) {
+        document.getElementById("resTimeError").style.display = "block";
+        valid = false;
+      }
+      const persons = reservationForm.resPersons.value;
+      if (!persons || persons < 1 || persons > 20) {
+        document.getElementById("resPersonsError").style.display = "block";
+        valid = false;
+      }
+      if (!valid) return;
+
+      resConfirmation.textContent = `¡Gracias, ${name}! Tu reserva para ${persons} persona(s) el ${date} a las ${time} ha sido recibida.`;
+      reservationForm.reset();
+    });
+
+    function iniciarMapa() {
+      const coords = { lat: 37.4221, lng: -122.0841 };
+      const map = new google.maps.Map(document.getElementById("map"), {
+        center: coords,
+        zoom: 16,
+        disableDefaultUI: true,
+        styles: [
+          {
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": [{ "color": "#6b4b35" }]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#fdf0e6" }]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry.fill",
+            "stylers": [{ "color": "#feeeda" }]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [{ "color": "#d6c1ac" }]
+          }
+        ]
+      });
+      new google.maps.Marker({
+        position: coords,
+        map: map,
+        title: "Cafe Late"
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderProducts();
+    });
+  </script>
+
+</body>
+</html>
+
