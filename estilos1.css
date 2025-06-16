@@ -1,0 +1,11 @@
+body {
+  background-color: #fff0f0;
+}
+
+#lista-productos li {
+  cursor: pointer;
+}
+
+#lista-productos li:hover {
+  background-color: #ffe6e6;
+}
